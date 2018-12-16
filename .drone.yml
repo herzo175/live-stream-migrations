@@ -1,0 +1,7 @@
+kind: pipeline
+name: live-stream-user-service
+
+steps:
+  # up
+  # down
+  # up
