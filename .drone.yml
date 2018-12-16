@@ -14,10 +14,12 @@ steps:
         from_secret: postgres_host
       POSTGRES_DB:
         from_secret: postgres_db
-    commands:
-      - migrate up 1
-      # - docker run -v migrations:/migrations migrate/migrate \
-      #   -database postgres://POSTGRES_USER:POSTGRES_PASS@POSTGRES_HOST:5432/POSTGRES_DB?sslmode=disable \
-      #   -path /migrations/ up
+    bash:
+      script:
+        - migrate up 1
+        # - migrate -source file://migrations -database postgres://POSTGRES_USER:POSTGRES_PASS@POSTGRES_HOST:5432/POSTGRES_DB?sslmode=disable up 1
+        # - docker run -v migrations:/migrations migrate/migrate \
+        #   -database postgres://POSTGRES_USER:POSTGRES_PASS@POSTGRES_HOST:5432/POSTGRES_DB?sslmode=disable \
+        #   -path /migrations/ up
   # down
   # up
