@@ -4,7 +4,7 @@ name: live-stream-user-service
 # NOTE: modify here to ensure number of migrations are correct
 steps:
   - name: up-test
-    image: migrate/migrate
+    image: docker
     environment:
       POSTGRES_USER:
         from_secret: postgres_user
@@ -14,8 +14,9 @@ steps:
         from_secret: postgres_host
       POSTGRES_DB:
         from_secret: postgres_db
-    bash:
-      script:
-        - migrate -source file://migrations -database postgres://POSTGRES_USER:POSTGRES_PASS@POSTGRES_HOST:5432/POSTGRES_DB?sslmode=disable up
+    commands:
+      - docker run -v migrations:/migrations migrate/migrate \
+        -database postgres://POSTGRES_USER:POSTGRES_PASS@POSTGRES_HOST:5432/POSTGRES_DB?sslmode=disable \
+        -path /migrations/ up
   # down
   # up
