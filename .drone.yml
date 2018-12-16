@@ -16,7 +16,7 @@ steps:
         from_secret: postgres_db
     commands:
       - apt-get update; apt-get install -y curl
-      - curl -y -L https://github.com/golang-migrate/migrate/releases/download/$version/migrate.$platform-amd64.tar.gz | tar xvz
+      - curl -L https://github.com/golang-migrate/migrate/releases/download/$version/migrate.$platform-amd64.tar.gz | tar xvz
       - migrate -source file://migrations -database postgres://POSTGRES_USER:POSTGRES_PASS@POSTGRES_HOST:5432/POSTGRES_DB?sslmode=disable up 1
         # - migrate -source file://migrations -database postgres://POSTGRES_USER:POSTGRES_PASS@POSTGRES_HOST:5432/POSTGRES_DB?sslmode=disable up 1
         # - docker run -v migrations:/migrations migrate/migrate \
