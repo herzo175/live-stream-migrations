@@ -18,6 +18,7 @@ steps:
         from_secret: postgres_db
     commands:
       - go get -tags 'postgres' -u github.com/golang-migrate/migrate/cmd/migrate
+      - echo $STEPS
       - migrate -source file://migrations -database postgres://$POSTGRES_USER:$POSTGRES_PASS@$POSTGRES_HOST:5432/$POSTGRES_DB?sslmode=disable up $STEPS
       - migrate -source file://migrations -database postgres://$POSTGRES_USER:$POSTGRES_PASS@$POSTGRES_HOST:5432/$POSTGRES_DB?sslmode=disable down $STEPS
       - migrate -source file://migrations -database postgres://$POSTGRES_USER:$POSTGRES_PASS@$POSTGRES_HOST:5432/$POSTGRES_DB?sslmode=disable up $STEPS
