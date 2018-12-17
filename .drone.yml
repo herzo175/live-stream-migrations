@@ -15,7 +15,7 @@ steps:
       POSTGRES_DB:
         from_secret: postgres_db
     commands:
-      - apt-get update; apt-get install -y curl
+      - apt-get update; apt-get install -y curl; apt-get install -y gnupg
       - curl -L https://packagecloud.io/golang-migrate/migrate/gpgkey | apt-key add -
       - echo "deb https://packagecloud.io/golang-migrate/migrate/ubuntu/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/migrate.list
       - apt-get update
