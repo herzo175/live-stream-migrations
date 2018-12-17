@@ -17,7 +17,7 @@ steps:
     commands:
       - go get -tags 'postgres' -u github.com/golang-migrate/migrate/cmd/migrate
       - ls -a $GOBIN
-      - migrate -source file://migrations -database postgres://POSTGRES_USER:POSTGRES_PASS@POSTGRES_HOST:5432/POSTGRES_DB?sslmode=disable up 1
+      - migrate -source file://migrations -database postgres://$POSTGRES_USER:$POSTGRES_PASS@$POSTGRES_HOST:5432/$POSTGRES_DB?sslmode=disable up 1
         # - migrate -source file://migrations -database postgres://POSTGRES_USER:POSTGRES_PASS@POSTGRES_HOST:5432/POSTGRES_DB?sslmode=disable up 1
         # - docker run -v migrations:/migrations migrate/migrate \
         #   -database postgres://POSTGRES_USER:POSTGRES_PASS@POSTGRES_HOST:5432/POSTGRES_DB?sslmode=disable \
