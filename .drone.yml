@@ -1,5 +1,7 @@
 kind: pipeline
 name: live-stream-user-service
+environment:
+  STEPS: 1
 
 # NOTE: modify here to ensure number of migrations are correct
 steps:
@@ -14,9 +16,9 @@ steps:
         from_secret: postgres_host
       POSTGRES_DB:
         from_secret: postgres_db
-      STEPS: 1
     commands:
       - go get -tags 'postgres' -u github.com/golang-migrate/migrate/cmd/migrate
       - migrate -source file://migrations -database postgres://$POSTGRES_USER:$POSTGRES_PASS@$POSTGRES_HOST:5432/$POSTGRES_DB?sslmode=disable up $STEPS
       - migrate -source file://migrations -database postgres://$POSTGRES_USER:$POSTGRES_PASS@$POSTGRES_HOST:5432/$POSTGRES_DB?sslmode=disable down $STEPS
       - migrate -source file://migrations -database postgres://$POSTGRES_USER:$POSTGRES_PASS@$POSTGRES_HOST:5432/$POSTGRES_DB?sslmode=disable up $STEPS
+# TODO: promote steps
