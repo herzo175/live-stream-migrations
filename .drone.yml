@@ -17,7 +17,7 @@ steps:
       V: "1"
     commands:
       - go get -tags 'postgres' -u github.com/golang-migrate/migrate/cmd/migrate
-      #  migrate -source file://migrations -database postgres://$POSTGRES_USER:$POSTGRES_PASS@$POSTGRES_HOST:5432/$POSTGRES_DB?sslmode=disable up $V
+      - migrate -source file://migrations -database postgres://$POSTGRES_USER:$POSTGRES_PASS@$POSTGRES_HOST:5432/$POSTGRES_DB?sslmode=disable up $V
       - migrate -source file://migrations -database postgres://$POSTGRES_USER:$POSTGRES_PASS@$POSTGRES_HOST:5432/$POSTGRES_DB?sslmode=disable down $V
       - migrate -source file://migrations -database postgres://$POSTGRES_USER:$POSTGRES_PASS@$POSTGRES_HOST:5432/$POSTGRES_DB?sslmode=disable up $V
 # TODO: promote steps
